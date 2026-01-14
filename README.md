@@ -1,30 +1,125 @@
-# React + TypeScript + Vite
+# 😷 Mask Detector
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+แอปพลิเคชันตรวจจับหน้ากากอนามัยแบบ Real-time โดยใช้ AI (Teachable Machine + TensorFlow.js)
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎥 ตรวจจับหน้ากากอนามัยแบบ Real-time ผ่านกล้อง Webcam
+- 🤖 ใช้ Machine Learning Model จาก Google Teachable Machine
+- 🌐 รองรับหลายแพลตฟอร์ม: Web, Android, Desktop (Electron)
+- ⚡ พัฒนาด้วย React + TypeScript + Vite
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+| Technology | Purpose |
+|------------|---------|
+| React 18 | UI Framework |
+| TypeScript | Type Safety |
+| Vite | Build Tool & Dev Server |
+| TensorFlow.js | Machine Learning Runtime |
+| Teachable Machine | Image Classification Model |
+| Capacitor | Android App Build |
+| Electron | Desktop App Build |
 
-- Configure the top-level `parserOptions` property like this:
+## 📁 Project Structure
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+mask-detector/
+├── public/
+│   └── model/           # Teachable Machine Model Files
+│       ├── model.json
+│       └── metadata.json
+├── src/
+│   ├── components/
+│   │   └── MaskDetector.tsx   # Main Component
+│   ├── App.tsx
+│   └── main.tsx
+├── android/             # Capacitor Android Project
+├── electron/            # Electron Desktop Config
+└── dist-electron/       # Electron Build Output
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm หรือ yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd mask-detector
+
+# Install dependencies
+npm install --legacy-peer-deps
+```
+
+### Development
+
+```bash
+# Start development server
+npm run dev
+```
+
+เปิดเบราว์เซอร์ไปที่ `http://localhost:5173`
+
+## 📦 Build
+
+### Web Build
+
+```bash
+npm run build
+```
+
+ไฟล์ Build จะอยู่ในโฟลเดอร์ `dist/`
+
+### Android Build
+
+```bash
+# Build และ Sync กับ Android
+npm run build:android
+
+# เปิดใน Android Studio
+npx cap open android
+```
+
+> 📖 ดูรายละเอียดเพิ่มเติมได้ที่ [BUILD_APK.md](./BUILD_APK.md)
+
+### Desktop Build (Electron)
+
+```bash
+npm run build:electron
+```
+
+## 🎯 How It Works
+
+1. **Load Model** - โหลด Teachable Machine Model จากโฟลเดอร์ `/public/model/`
+2. **Start Webcam** - เริ่มต้นกล้อง Webcam เมื่อผู้ใช้กดปุ่ม
+3. **Predict** - ทำนายผลแบบ Real-time ว่าสวมหน้ากากหรือไม่
+4. **Display** - แสดงผลลัพธ์เป็น Probability ของแต่ละ Class
+
+## 🔧 Custom Model
+
+หากต้องการใช้โมเดลของตัวเอง:
+
+1. สร้างโมเดลที่ [Teachable Machine](https://teachablemachine.withgoogle.com/)
+2. Export โมเดลแบบ TensorFlow.js
+3. นำไฟล์ `model.json`, `metadata.json` และ `weights.bin` ไปวางในโฟลเดอร์ `public/model/`
+
+## 📜 Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production (Web) |
+| `npm run build:android` | Build for Android |
+| `npm run build:electron` | Build for Desktop |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+
+## 📄 License
+
+MIT License
