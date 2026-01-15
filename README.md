@@ -25,19 +25,68 @@
 
 ```
 mask-detector/
-├── public/
-│   └── model/           # Teachable Machine Model Files
-│       ├── model.json
-│       └── metadata.json
-├── src/
-│   ├── components/
-│   │   └── MaskDetector.tsx   # Main Component
-│   ├── App.tsx
-│   └── main.tsx
-├── android/             # Capacitor Android Project
-├── electron/            # Electron Desktop Config
-└── dist-electron/       # Electron Build Output
+│
+├── 📄 index.html              # HTML entry point
+├── 📄 package.json            # Dependencies และ scripts
+├── 📄 vite.config.ts          # Vite configuration
+├── 📄 tsconfig.json           # TypeScript configuration
+├── 📄 capacitor.config.ts     # Capacitor configuration สำหรับ mobile
+├── 📄 electron-builder.json5  # Electron builder configuration
+├── 📄 .eslintrc.cjs           # ESLint configuration
+│
+├── 📁 src/                    # ✨ Source code หลัก
+│   ├── 📄 main.tsx            # React entry point
+│   ├── 📄 App.tsx             # Root component
+│   ├── 📄 App.css             # Global styles สำหรับ App
+│   ├── 📄 index.css           # Global CSS styles
+│   ├── 📄 vite-env.d.ts       # Vite type definitions
+│   │
+│   ├── 📁 components/         # React Components
+│   │   ├── 📄 MaskDetector.tsx    # 🎯 Component หลักตรวจจับหน้ากาก
+│   │   └── 📄 MaskDetector.css    # Styles สำหรับ MaskDetector
+│   │
+│   ├── 📁 types/              # TypeScript Type Definitions
+│   │   └── 📄 teachablemachine.d.ts  # Types สำหรับ Teachable Machine
+│   │
+│   └── 📁 assets/             # Static assets (images, icons)
+│
+├── 📁 public/                 # 📦 Static files (ไม่ถูก process)
+│   ├── 📄 vite.svg            # Vite logo
+│   └── 📁 model/              # 🤖 Teachable Machine Model
+│       ├── 📄 model.json      # Model architecture
+│       ├── 📄 metadata.json   # Model metadata (labels)
+│       └── 📄 weights.bin     # Model weights
+│
+├── 📁 electron/               # 🖥️ Electron Desktop App
+│   ├── 📄 main.ts             # Electron main process
+│   ├── 📄 preload.ts          # Preload script
+│   └── 📄 electron-env.d.ts   # Electron type definitions
+│
+└── 📁 android/                # 📱 Android Project (Capacitor)
+    ├── 📄 build.gradle        # Android build configuration
+    ├── 📄 settings.gradle     # Gradle settings
+    ├── 📄 variables.gradle    # Gradle variables
+    ├── 📄 gradlew.bat         # Gradle wrapper (Windows)
+    ├── 📁 app/                # Android app module
+    │   ├── 📄 build.gradle    # App-level build config
+    │   └── 📁 src/            # Android source code
+    ├── 📁 gradle/             # Gradle wrapper files
+    └── 📁 capacitor-cordova-android-plugins/  # Capacitor plugins
 ```
+
+### 📂 Folder Descriptions
+
+| Folder | Description |
+|--------|-------------|
+| `src/` | โค้ด React/TypeScript หลักของแอปพลิเคชัน |
+| `src/components/` | React Components ที่ใช้ในแอป |
+| `src/types/` | TypeScript type definitions |
+| `public/` | ไฟล์ static ที่ไม่ต้อง process (รวมถึง ML Model) |
+| `public/model/` | ไฟล์โมเดล Teachable Machine สำหรับตรวจจับหน้ากาก |
+| `electron/` | โค้ดสำหรับ build Desktop app ด้วย Electron |
+| `dist/` | Output จากการ build สำหรับ Web |
+| `dist-electron/` | Output จากการ build สำหรับ Electron |
+| `android/` | โปรเจค Android ที่สร้างโดย Capacitor |
 
 ## 🚀 Getting Started
 
