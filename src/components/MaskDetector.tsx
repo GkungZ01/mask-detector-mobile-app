@@ -172,6 +172,43 @@ const MaskDetector = () => {
 
       {/* Main Content */}
       <main className="main-content">
+        {/* Alert Banner - แสดงเมื่อไม่สวมหน้ากาก */}
+        {predictions.length > 0 &&
+          (() => {
+            const topPrediction = predictions.reduce((a, b) => (a.probability > b.probability ? a : b));
+            const isNoMask =
+              topPrediction.className.toLowerCase().includes("nomask") ||
+              topPrediction.className.toLowerCase().includes("no mask") ||
+              (!topPrediction.className.toLowerCase().includes("mask") && topPrediction.probability > 0.5);
+            const isMask =
+              topPrediction.className.toLowerCase().includes("mask") &&
+              !topPrediction.className.toLowerCase().includes("nomask") &&
+              !topPrediction.className.toLowerCase().includes("no mask");
+
+            if (isNoMask && topPrediction.probability > 0.5) {
+              return (
+                <div className="alert-banner alert-danger">
+                  <div className="alert-icon">⚠️</div>
+                  <div className="alert-content">
+                    <h2>กรุณาสวมหน้ากากอนามัย!</h2>
+                    <p>ตรวจพบว่าคุณไม่ได้สวมหน้ากาก</p>
+                  </div>
+                </div>
+              );
+            } else if (isMask && topPrediction.probability > 0.5) {
+              return (
+                <div className="alert-banner alert-success">
+                  <div className="alert-icon">✅</div>
+                  <div className="alert-content">
+                    <h2>สวมหน้ากากอนามัยแล้ว</h2>
+                    <p>ขอบคุณที่ให้ความร่วมมือ</p>
+                  </div>
+                </div>
+              );
+            }
+            return null;
+          })()}
+
         {/* Camera Section */}
         <div className="camera-section">
           <div className="camera-container">

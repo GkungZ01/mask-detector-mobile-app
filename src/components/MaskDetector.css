@@ -7,6 +7,67 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Alert Banner */
+.alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 16px;
+  animation: slideDown 0.4s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-banner.alert-danger {
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: slideDown 0.4s ease, pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(255, 65, 108, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 48px rgba(255, 65, 108, 0.8);
+  }
+}
+
+.alert-banner.alert-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.alert-icon {
+  font-size: 3rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.alert-content h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.alert-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 5px 0 0 0;
+  font-size: 0.95rem;
+}
+
 /* Header */
 .header {
   background: rgba(255, 255, 255, 0.1);
